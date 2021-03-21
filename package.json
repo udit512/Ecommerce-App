@@ -1,0 +1,28 @@
+{
+  "name": "ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/udit512/Ecommerce-App.git"
+  },
+  "author": "UDIT PATHAK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/udit512/Ecommerce-App/issues"
+  },
+  "homepage": "https://github.com/udit512/Ecommerce-App#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "mongoose": "^5.12.1"
+  }
+}
