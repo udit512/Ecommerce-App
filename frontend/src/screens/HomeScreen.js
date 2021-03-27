@@ -1,19 +1,18 @@
 import { motion } from "framer-motion";
-import { React, useState, useEffect } from "react";
+import { React, useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import Product from "../components/Product";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { listProducts } from "../actions/productActions";
+import Loader from "../components/Loader";
+import Message from "../components/Message";
 const HomeScreen = () => {
-  const [products, setProducts] = useState([]);
-
+  const dispatch = useDispatch();
+  const productList = useSelector(state => state.productList)
+  const {products,loading,error} = productList
   useEffect(() => {
-    const fetchProduct = async () => {
-      const { data } = await axios.get("http://127.0.0.1:5000/api/products");
-      setProducts(data);
-    };
-
-    fetchProduct();
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
 
   const variants = {
     in: {
@@ -31,14 +30,16 @@ const HomeScreen = () => {
   };
   return (
     <>
-      <motion.div
+      
+        <h1>Latest Products</h1>
+        {loading ? <Loader/> : error ? <Message variant="danger" >{error}</Message> : 
+        <motion.div
         initial="out"
         animate="in"
         exit="in"
         variants={variants}
         transition={transitions}
       >
-        <h1>Latest Products</h1>
         <Row>
           {products.map((product) => {
             return (
@@ -48,7 +49,10 @@ const HomeScreen = () => {
             );
           })}
         </Row>
-      </motion.div>
+        </motion.div>
+        }
+        
+      
     </>
   );
 };

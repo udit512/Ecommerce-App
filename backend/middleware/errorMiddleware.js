@@ -1,5 +1,5 @@
-const notFound = (res, req, next) => {
-  const error = new Error(`Not found - ${req.originalUrl}`);
+const notFound = (req, res, next) => {
+  const error = new Error(`Not found - ${JSON.stringify(req.body)}`);
   res.statuscode = 404;
   next(error);
 };
